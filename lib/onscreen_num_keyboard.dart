@@ -1,5 +1,3 @@
-library numeric_keyboard;
-
 import 'package:flutter/material.dart';
 
 typedef KeyboardTapCallback = void Function(String text);
@@ -26,6 +24,9 @@ class NumericKeyboard extends StatefulWidget {
   /// Main axis alignment [default = MainAxisAlignment.spaceEvenly]
   final MainAxisAlignment mainAxisAlignment;
 
+  /// Size of the buttons
+  final double? buttonSize;
+
   const NumericKeyboard(
       {Key? key,
       required this.onKeyboardTap,
@@ -34,7 +35,8 @@ class NumericKeyboard extends StatefulWidget {
       this.rightIcon,
       this.leftButtonFn,
       this.leftIcon,
-      this.mainAxisAlignment = MainAxisAlignment.spaceBetween})
+      this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+      this.buttonSize = 50})
       : super(key: key);
 
   @override
@@ -83,8 +85,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.leftButtonFn,
                   child: Container(
                       alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
+                      width: widget.buttonSize,
+                      height: widget.buttonSize,
                       child: widget.leftIcon)),
               _calcButton('0'),
               InkWell(
@@ -92,8 +94,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                   onTap: widget.rightButtonFn,
                   child: Container(
                       alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
+                      width: widget.buttonSize,
+                      height: widget.buttonSize,
                       child: widget.rightIcon))
             ],
           ),
@@ -110,8 +112,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         },
         child: Container(
           alignment: Alignment.center,
-          width: 50,
-          height: 50,
+          width: widget.buttonSize,
+          height: widget.buttonSize,
           child: Text(
             value,
             style: widget.textStyle,
